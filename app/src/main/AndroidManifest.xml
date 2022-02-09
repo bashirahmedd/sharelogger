@@ -42,6 +42,7 @@
 <!--                <category android:name="android.intent.category.DEFAULT" />-->
 <!--                <data android:mimeType="audio/*" />-->
 <!--            </intent-filter>-->
+
 <!--            <intent-filter>-->
 <!--                <action android:name="android.intent.action.SEND_MULTIPLE" />-->
 <!--                <category android:name="android.intent.category.DEFAULT" />-->
@@ -50,8 +51,7 @@
 
         </activity>
 
-        <service
-            android:name=".utils.ClipboardMonitorService" />
+        <service android:name=".utils.ClipboardMonitorService" />
 
         <receiver
             android:name=".utils.BootCompletedReceiver"
