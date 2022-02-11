@@ -39,7 +39,7 @@ public class SettingsManager {
 
 	private SettingsManager(Context context) {
 		this.context = context;
-        this.applicationInstance = (ApplicationInstance) context.getApplicationContext();
+        //this.applicationInstance = (ApplicationInstance) context.getApplicationContext();
 		this.settings = PreferenceManager.getDefaultSharedPreferences(context);
 	}
 

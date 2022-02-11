@@ -9,10 +9,10 @@
     <string name="menuItemInfo">Info</string>
 
     <!-- main activity -->
-    <string name="labelDescription">This app monitors the clipboard and speaks changes with the default tts voice.</string>
+    <string name="labelDescription">This app monitors and keeps the clipboard changes</string>
     <string name="buttonEnableService">Enable service</string>
     <string name="labelClipboardHistory">Clipboard history:</string>
-    <string name="buttonClearClipboardHistory">Clear</string>
+    <string name="buttonClearClipboardHistory">Clear History</string>
     <string name="labelListViewClipboardHistoryEmpty">The clipboard history is empty.</string>
 
     <!-- info activity -->
