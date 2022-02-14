@@ -3,6 +3,7 @@ package com.ahmed.sharelogger;
 import android.os.Bundle;
 
 import com.ahmed.sharelogger.ui.home.HomeViewModel;
+import com.ahmed.sharelogger.utils.ApplicationInstance;
 import com.ahmed.sharelogger.utils.SettingsManager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -41,15 +42,16 @@ public class MainActivity extends AppCompatActivity {
     private Switch buttonEnableService;
     private ListView listViewClipboardHistory;
 
-
-    public SettingsManager settingsManagerInstance;
+    private ApplicationInstance applicationInstance;
+//    public SettingsManager settingsManagerInstance;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         Log.i("MainActivity", "onCreate");
-        settingsManagerInstance = SettingsManager.getInstance(this);
+        applicationInstance = new ApplicationInstance(this);
+//        settingsManagerInstance = SettingsManager.getInstance(this);
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -70,16 +72,16 @@ public class MainActivity extends AppCompatActivity {
         //setupService();
     }
 
-    private void setupService(){
-        clipboardManager = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-
-        // service switch
-        buttonEnableService = (Switch) findViewById(R.id.buttonEnableService);
-        buttonEnableService.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                settingsManagerInstance.setClipboardMonitorServiceEnabled(isChecked);
-            }
-        });
-
-    }
+//    private void setupService(){
+//        clipboardManager = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+//
+//        // service switch
+//        buttonEnableService = (Switch) findViewById(R.id.buttonEnableService);
+//        buttonEnableService.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                settingsManagerInstance.setClipboardMonitorServiceEnabled(isChecked);
+//            }
+//        });
+//
+//    }
 }

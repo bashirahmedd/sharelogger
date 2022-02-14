@@ -21,11 +21,11 @@ import com.ahmed.sharelogger.utils.SettingsManager;
 
 public abstract class AbstractActivity extends AppCompatActivity {
 
-    public SettingsManager settingsManagerInstance;
+//    public SettingsManager settingsManagerInstance;
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        settingsManagerInstance = SettingsManager.getInstance(this);
+//        settingsManagerInstance = SettingsManager.getInstance(this);
     }
 
 

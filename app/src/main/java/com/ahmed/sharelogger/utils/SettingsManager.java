@@ -17,31 +17,29 @@ import org.json.JSONException;
 
 public class SettingsManager {
 
-	// static settings
+    // static settings
     public static final boolean DEFAULT_CLIPBOARD_MONITOR_SERVICE_ENABLED = true;
     public static final int MAX_NUMBER_OF_SEARCH_TERM_HISTORY_ENTRIES = 30;
 
-	// class variables
-	private static SettingsManager settingsManagerInstance;
-	private Context context;
+    // class variables
+    private static SettingsManager settingsManagerInstance;
+    private Context context;
     private ApplicationInstance applicationInstance;
-	private SharedPreferences settings;
+    private SharedPreferences settings;
 
     private ClipboardEntryHistory clipboardEntryHistory;
 
     public static SettingsManager getInstance(Context context) {
         if (settingsManagerInstance == null) {
-            settingsManagerInstance = new SettingsManager(
-                    context.getApplicationContext());
+            settingsManagerInstance = new SettingsManager(context);
         }
         return settingsManagerInstance;
     }
 
-	private SettingsManager(Context context) {
-		this.context = context;
-        //this.applicationInstance = (ApplicationInstance) context.getApplicationContext();
-		this.settings = PreferenceManager.getDefaultSharedPreferences(context);
-	}
+    private SettingsManager(Context context) {
+        this.context = context;
+        this.settings = PreferenceManager.getDefaultSharedPreferences(context);
+    }
 
     public String getApplicationVersion() {
         try {
@@ -71,19 +69,19 @@ public class SettingsManager {
      * search term history
      */
 
-	public ClipboardEntryHistory getClipboardEntryHistory() {
+    public ClipboardEntryHistory getClipboardEntryHistory() {
         if (clipboardEntryHistory == null) {
             JSONArray jsonClipboardEntryList;
             try {
-    		    jsonClipboardEntryList = new JSONArray(settings.getString(
+                jsonClipboardEntryList = new JSONArray(settings.getString(
                         Constants.SETTINGS_KEY.CLIPBOARD_ENTRY_LIST, "[]"));
-    		} catch (JSONException e) {
+            } catch (JSONException e) {
                 jsonClipboardEntryList = new JSONArray();
             }
             clipboardEntryHistory = new ClipboardEntryHistory(jsonClipboardEntryList);
         }
-		return clipboardEntryHistory;
-	}
+        return clipboardEntryHistory;
+    }
 
 
     public class ClipboardEntryHistory {
@@ -92,10 +90,11 @@ public class SettingsManager {
 
         public ClipboardEntryHistory(JSONArray jsonClipboardEntryList) {
             clipboardEntryList = new ArrayList<String>();
-            for(int i=0; i<jsonClipboardEntryList.length(); i++){
+            for (int i = 0; i < jsonClipboardEntryList.length(); i++) {
                 try {
                     clipboardEntryList.add(jsonClipboardEntryList.getString(i));
-                } catch (JSONException e) {}
+                } catch (JSONException e) {
+                }
             }
         }
 
@@ -142,12 +141,13 @@ public class SettingsManager {
             for (String clipboardEntry : this.clipboardEntryList) {
                 jsonClipboardEntryList.put(clipboardEntry);
             }
-    		// save settings
-	    	Editor editor = settings.edit();
-		    editor.putString(
+            // save settings
+            Editor editor = settings.edit();
+            editor.putString(
                     Constants.SETTINGS_KEY.CLIPBOARD_ENTRY_LIST,
                     jsonClipboardEntryList.toString());
-    		editor.apply();
+            editor.apply();
+
             // null clipboardEntryHistory object to force reload on next getClipboardEntryHistory()
             clipboardEntryHistory = null;
         }
