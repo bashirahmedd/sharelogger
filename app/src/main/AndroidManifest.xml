@@ -17,7 +17,6 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
 <!--        <activity-->
 <!--            android:name=".MainActivity"-->
@@ -35,13 +34,11 @@
 <!--            &lt;!&ndash; <data android:mimeType="text/plain" /> &ndash;&gt;-->
 <!--            &lt;!&ndash; </intent-filter> &ndash;&gt;-->
 
-
 <!--            &lt;!&ndash; <intent-filter> &ndash;&gt;-->
 <!--            &lt;!&ndash; <action android:name="android.intent.action.SEND" /> &ndash;&gt;-->
 <!--            &lt;!&ndash; <category android:name="android.intent.category.DEFAULT" /> &ndash;&gt;-->
 <!--            &lt;!&ndash; <data android:mimeType="image/*" /> &ndash;&gt;-->
 <!--            &lt;!&ndash; </intent-filter> &ndash;&gt;-->
-
 
 <!--            &lt;!&ndash; <intent-filter> &ndash;&gt;-->
 <!--            &lt;!&ndash; <action android:name="android.intent.action.SEND_MULTIPLE" /> &ndash;&gt;-->
@@ -49,20 +46,17 @@
 <!--            &lt;!&ndash; <data android:mimeType="image/*" /> &ndash;&gt;-->
 <!--            &lt;!&ndash; </intent-filter> &ndash;&gt;-->
 
-
 <!--            &lt;!&ndash; <intent-filter> &ndash;&gt;-->
 <!--            &lt;!&ndash; <action android:name="android.intent.action.SEND" /> &ndash;&gt;-->
 <!--            &lt;!&ndash; <category android:name="android.intent.category.DEFAULT" /> &ndash;&gt;-->
 <!--            &lt;!&ndash; <data android:mimeType="audio/*" /> &ndash;&gt;-->
 <!--            &lt;!&ndash; </intent-filter> &ndash;&gt;-->
 
-
 <!--            &lt;!&ndash; <intent-filter> &ndash;&gt;-->
 <!--            &lt;!&ndash; <action android:name="android.intent.action.SEND_MULTIPLE" /> &ndash;&gt;-->
 <!--            &lt;!&ndash; <category android:name="android.intent.category.DEFAULT" /> &ndash;&gt;-->
 <!--            &lt;!&ndash; <data android:mimeType="audio/*" /> &ndash;&gt;-->
 <!--            &lt;!&ndash; </intent-filter> &ndash;&gt;-->
-
 <!--        </activity>-->
 
         <service android:name=".utils.ClipboardMonitorService" />

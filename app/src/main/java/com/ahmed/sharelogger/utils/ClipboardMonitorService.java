@@ -92,7 +92,7 @@ public class ClipboardMonitorService extends Service {
                 String clipboardEntry = clip.getItemAt(0).getText().toString().trim();
                 if (!clipboardEntry.equals("")) {
                     // speak
-                    ttsWrapperInstance.speak(clipboardEntry, false, true);
+                    //ttsWrapperInstance.speak(clipboardEntry, false, true);
                     // store to disk
                     settingsManagerInstance.getClipboardEntryHistory().addClipboardEntry(clipboardEntry);
                     // reload ui

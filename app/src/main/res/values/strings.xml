@@ -31,9 +31,10 @@
     <string name="dialogDisabled">Off</string>
     <string name="initial_url_text">Welcome Home</string>
 
-    <string name="start_log">Start</string>
-    <string name="stop_log">Stop</string>
+    <string name="start_log">Start Service</string>
+    <string name="stop_log">Stop Service</string>
     <string name="tw_current_share">Current Share</string>
     <string name="ed_current_share">...</string>
+    <string name="log_youtube_urls">Log Youtube URLs</string>
 
 </resources>
