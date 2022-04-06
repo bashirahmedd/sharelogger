@@ -44,9 +44,9 @@ public class ClipboardMonitorService extends Service {
         notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 //        applicationInstance = (ApplicationInstance) getApplicationContext();
 //        applicationInstance = new ApplicationInstance(this);
-        settingsManagerInstance = SettingsManager.getInstance(this);
+//        settingsManagerInstance = SettingsManager.getInstance(this);
 
-        ttsWrapperInstance = TTSWrapper.getInstance(this);
+//        ttsWrapperInstance = TTSWrapper.getInstance(this);
     }
 
     @Override
@@ -59,9 +59,9 @@ public class ClipboardMonitorService extends Service {
         if (intent != null) {
             if (Constants.CustomAction.UPDATE_SERVICE_NOTIFICATION.equals(intent.getAction())) {
                 startForeground(Constants.ID.NOTIFICATION_ID, getServiceNotification());
-                if (!settingsManagerInstance.getClipboardMonitorServiceEnabled()) {
-                    stopSelf();
-                }
+//                if (!settingsManagerInstance.getClipboardMonitorServiceEnabled()) {
+//                    stopSelf();
+//                }
             }
         }
     }
@@ -129,7 +129,7 @@ public class ClipboardMonitorService extends Service {
                 .setContentText(
                         String.format(
                                 getResources().getString(R.string.serviceNotification),
-                                enabledOrDisabled(settingsManagerInstance.getClipboardMonitorServiceEnabled())))
+                                enabledOrDisabled(true)))
                 .build();
     }
 

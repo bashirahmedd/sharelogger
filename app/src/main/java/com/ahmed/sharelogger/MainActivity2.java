@@ -15,7 +15,8 @@ import com.ahmed.sharelogger.utils.ApplicationInstance;
 
 public class MainActivity2 extends AppCompatActivity implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
 
-    private ApplicationInstance applicationInstance;
+    private ApplicationInstance applicationInstance = null;
+    private String className = "com.ahmed.shareloger.MainActivity2";
 
     private  Button btn_start_service;
     private Button btn_stop_service;
@@ -40,15 +41,21 @@ public class MainActivity2 extends AppCompatActivity implements View.OnClickList
         tx_current_share = (TextView) findViewById(R.id.tx_current_share);
         ed_current_share = (EditText) findViewById(R.id.ed_current_share);
 
-        Log.i("MainActivity", "onCreate");
-        applicationInstance = new ApplicationInstance(this);
+        Log.i(className, "onCreate");
+
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case  R.id.btn_start_service: {
-                Log.d("ButtonClick", "btn_start_service");
+
+                if( applicationInstance == null ){
+                    applicationInstance = new ApplicationInstance(this);
+                    Log.d(className, "service started");
+                }else{
+                    Log.d(className, "service has already started");
+                }
                 break;
             }
             case R.id.btn_stop_service: {

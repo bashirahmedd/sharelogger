@@ -22,7 +22,7 @@
     <string name="labelWebsite">Website: https://github.com/scheibler/ClipboardToSpeech</string>
 
     <!-- service -->
-    <string name="serviceNotification">Speak clipboard: %1$s</string>
+    <string name="serviceNotification">Youtube Clipboard: %1$s</string>
 
     <!-- standard messages, which are used in more than one component -->
     <string name="dialogOK">OK</string>

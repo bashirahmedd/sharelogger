@@ -27,11 +27,11 @@ public class ApplicationInstance  {
         // set notification channel for android 8
         createNotificationChannel();
         // settings manager instance
-        SettingsManager settingsManagerInstance = SettingsManager.getInstance(context);
+//        SettingsManager settingsManagerInstance = SettingsManager.getInstance(context);
         // update notification
-        if (settingsManagerInstance.getClipboardMonitorServiceEnabled()) {
-            updateServiceNotification();
-        }
+//        if (settingsManagerInstance.getClipboardMonitorServiceEnabled()) {
+        updateServiceNotification();
+//        }
     }
 
     /**
