@@ -41,7 +41,7 @@ public class MainActivity2 extends AppCompatActivity implements View.OnClickList
         ed_current_share = (EditText) findViewById(R.id.ed_current_share);
 
         Log.i("MainActivity", "onCreate");
-        //applicationInstance = new ApplicationInstance(this);
+        applicationInstance = new ApplicationInstance(this);
     }
 
     @Override

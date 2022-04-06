@@ -57,6 +57,7 @@ public class ApplicationInstance  {
         ContextCompat.startForegroundService(context, updateServiceNotificationIntent);
     }
 
+    // to keep single instance of ApplicationInstance
     public static ApplicationInstance getInstance(Context context ) {
         if (applicationInstance == null) {
             applicationInstance = new ApplicationInstance(context);

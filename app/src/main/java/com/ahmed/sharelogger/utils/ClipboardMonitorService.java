@@ -12,20 +12,19 @@ import android.content.Context;
 import android.content.Intent;
 
 import android.os.IBinder;
+import android.util.Log;
 
 //import android.support.v4.app.NotificationCompat;
 //import android.support.v4.content.LocalBroadcastManager;
 
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 //import de.eric_scheibler.clipboardtospeech.R;
 //import de.eric_scheibler.clipboardtospeech.ui.activity.MainActivity;
 //import de.eric_scheibler.clipboardtospeech.utils.SettingsManager;
 import com.ahmed.sharelogger.R;
 import com.ahmed.sharelogger.MainActivity;
-import com.ahmed.sharelogger.utils.SettingsManager;
 
 public class ClipboardMonitorService extends Service {
 
@@ -33,7 +32,7 @@ public class ClipboardMonitorService extends Service {
     private ClipboardManager clipboardManager;
     private NotificationManager notificationManager;
     private ApplicationInstance applicationInstance;
-    private BootCompletedReceiver bootCompletedReceiver;
+    private StoreClipboardReceiver storeClipboardReceiver;
     private SettingsManager settingsManagerInstance;
     private TTSWrapper ttsWrapperInstance;
 
@@ -44,7 +43,7 @@ public class ClipboardMonitorService extends Service {
         clipboardManager.addPrimaryClipChangedListener(mOnPrimaryClipChangedListener);
         notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 //        applicationInstance = (ApplicationInstance) getApplicationContext();
-        applicationInstance = new ApplicationInstance(this);
+//        applicationInstance = new ApplicationInstance(this);
         settingsManagerInstance = SettingsManager.getInstance(this);
 
         ttsWrapperInstance = TTSWrapper.getInstance(this);
@@ -74,8 +73,8 @@ public class ClipboardMonitorService extends Service {
             clipboardManager.removePrimaryClipChangedListener(mOnPrimaryClipChangedListener);
         }
         try {
-            if (bootCompletedReceiver != null) {
-                unregisterReceiver(bootCompletedReceiver);
+            if (storeClipboardReceiver != null) {
+                unregisterReceiver(storeClipboardReceiver);
             }
         } catch (IllegalArgumentException e) {
         }
@@ -90,14 +89,18 @@ public class ClipboardMonitorService extends Service {
                     && clipboardManager.getPrimaryClipDescription().hasMimeType(ClipDescription.MIMETYPE_TEXT_PLAIN)) {
                 ClipData clip = clipboardManager.getPrimaryClip();
                 String clipboardEntry = clip.getItemAt(0).getText().toString().trim();
+                Log.d("mOnPrimaryClipChanged", clipboardEntry);
                 if (!clipboardEntry.equals("")) {
+                    Intent intent = new Intent("com.ahmed.sharelogger.NEWCLIPBOARDENTRY");
+                    intent.putExtra("NEWCLIPBOARDENTRY", clipboardEntry);
+                    sendBroadcast(intent);
                     // speak
                     //ttsWrapperInstance.speak(clipboardEntry, false, true);
                     // store to disk
-                    settingsManagerInstance.getClipboardEntryHistory().addClipboardEntry(clipboardEntry);
+                    //settingsManagerInstance.getClipboardEntryHistory().addClipboardEntry(clipboardEntry);
                     // reload ui
-                    Intent reloadUIIntent = new Intent(Constants.CustomAction.RELOAD_UI);
-                    LocalBroadcastManager.getInstance(ClipboardMonitorService.this).sendBroadcast(reloadUIIntent);
+//                    Intent reloadUIIntent = new Intent(Constants.CustomAction.RELOAD_UI);
+//                    LocalBroadcastManager.getInstance(ClipboardMonitorService.this).sendBroadcast(reloadUIIntent);
                 }
             }
         }
@@ -136,7 +139,6 @@ public class ClipboardMonitorService extends Service {
         }
         return getResources().getString(R.string.dialogDisabled);
     }
-
 
     public void updateServiceNotification() {
         Intent updateServiceNotificationIntent = new Intent(getApplicationContext(), ClipboardMonitorService.class);

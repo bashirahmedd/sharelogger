@@ -62,10 +62,12 @@
         <service android:name=".utils.ClipboardMonitorService" />
 
         <receiver
-            android:name=".utils.BootCompletedReceiver"
-            android:exported="true">
+            android:name=".utils.StoreClipboardReceiver"
+            android:exported="true"
+            android:enabled="true">
             <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
+<!--                <action android:name="android.intent.action.BOOT_COMPLETED" />-->
+                <action android:name="com.ahmed.sharelogger.NEWCLIPBOARDENTRY"/>
             </intent-filter>
         </receiver>
     </application>
